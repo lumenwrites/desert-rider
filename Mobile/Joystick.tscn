@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Mobile/sprites/ButtonPressed.png" type="Texture" id=1]
+[ext_resource path="res://Mobile/sprites/Pad.png" type="Texture" id=2]
+[ext_resource path="res://Mobile/sprites/Button.png" type="Texture" id=3]
+[ext_resource path="res://Mobile/JoystickButton.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.0
+
+[node name="Joystick" type="Sprite"]
+texture = ExtResource( 2 )
+
+[node name="JoystickButton" type="TouchScreenButton" parent="."]
+position = Vector2( -32, -32 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 1 )
+shape = SubResource( 1 )
+script = ExtResource( 4 )

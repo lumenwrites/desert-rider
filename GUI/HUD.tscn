@@ -1,0 +1,165 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://GUI/HUD.gd" type="Script" id=1]
+[ext_resource path="res://GUI/fonts/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://GUI/sprites/bolt_gold.png" type="Texture" id=3]
+[ext_resource path="res://Environment/sprites/oil.png" type="Texture" id=4]
+[ext_resource path="res://GUI/sprites/star_gold.png" type="Texture" id=5]
+[ext_resource path="res://FX/sprites/flame.png" type="Texture" id=6]
+[ext_resource path="res://GUI/sprites/icon_jump.png" type="Texture" id=7]
+[ext_resource path="res://Mobile/Joystick.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="ScoreIcon" type="TextureRect" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 51.0
+margin_bottom = 80.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+margin_left = 60.0
+margin_top = 20.0
+margin_right = 168.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="HBox"]
+margin_right = 100.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "123456"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxScoreLabel" type="Label" parent="HBox"]
+margin_left = 104.0
+margin_right = 184.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 1 )
+text = "| 0000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PickupsIcon" type="TextureRect" parent="."]
+margin_left = 25.6484
+margin_top = 60.0
+margin_right = 44.6484
+margin_bottom = 50.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PickupsLabel" type="Label" parent="."]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 187.217
+margin_bottom = 91.0
+custom_fonts/font = SubResource( 1 )
+text = "00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="Control" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HelpText" type="Label" parent="Help"]
+margin_left = -110.772
+margin_top = 21.4618
+margin_right = 128.228
+margin_bottom = 52.4618
+custom_fonts/font = SubResource( 1 )
+text = "LMB      MMB       RMB"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoostIcon" type="TextureRect" parent="Help"]
+margin_left = -113.991
+margin_top = 48.5658
+margin_right = -72.991
+margin_bottom = 128.566
+rect_rotation = 180.0
+rect_scale = Vector2( 0.3788, 0.305253 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JumpIcon" type="TextureRect" parent="Help"]
+margin_left = -43.443
+margin_top = 48.3536
+margin_right = 56.5571
+margin_bottom = 107.354
+rect_rotation = 270.0
+rect_scale = Vector2( 0.274, 0.323 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OilIcon" type="TextureRect" parent="Help"]
+margin_left = 70.0273
+margin_top = 50.3495
+margin_right = 170.027
+margin_bottom = 150.349
+rect_rotation = 180.0
+rect_scale = Vector2( 0.257192, 0.257192 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Help"]
+anims/fade = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Joystick" parent="." instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 187.06, 579.553 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

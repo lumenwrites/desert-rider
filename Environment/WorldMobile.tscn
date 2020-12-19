@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Vehicles/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Environment/Oil.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Environment/RockSmall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Environment/RockBig.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Environment/Barrel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Vehicles/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Environment/Chunks.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Environment/SpawnEnv.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Vehicles/Spawn.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=10]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 220.566, 409.349 )
+z_index = 0
+
+[node name="SpawnEnemies" parent="." instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 885.208, 407.662 )
+wait_time = 1.0
+
+[node name="EnemyCars" type="Node2D" parent="."]
+
+[node name="SpawnEnv" parent="." instance=ExtResource( 8 )]
+
+[node name="Chunks" parent="." instance=ExtResource( 7 )]
+
+[node name="HUD" parent="." instance=ExtResource( 10 )]
+
+[node name="RockTrampoline" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1345.06, 383.277 )
+scale = Vector2( 1, 1 )
+
+[node name="BigRock" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1747.98, 859.441 )
+
+[node name="Enemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( -205.055, 105.091 )
+
+[node name="Oil" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1089.87, 123.376 )
+
+[node name="Barrel" parent="." instance=ExtResource( 5 )]
+position = Vector2( 408.271, 410.308 )
